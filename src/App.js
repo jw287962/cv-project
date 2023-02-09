@@ -9,8 +9,10 @@ class App extends React.Component {
     this.state = {
       personal: {name: "", email: "", phone: ""},
       university: {school: "", major: "", graduation: ""},
+      skills: [],
       experience: [{company: "",title: "", task: []}],
     }
+
   }
 
    submitForm = (e) =>{
@@ -20,15 +22,41 @@ class App extends React.Component {
       university: this.state.university,
       experience:  this.state.experience,
     })
+    const fieldsets = document.querySelectorAll('fieldset');
+    const submitButton = document.querySelector('.submitbutton');
+    const hiddenButton = document.querySelector('.fillbutton');
+    submitButton.classList.add('hidden');
+    hiddenButton.classList.add('hidden');
+    fieldsets.forEach(element => {
+      element.classList.add('hidden');
+
+    });
+  }
+  editForm = (e) => {
+    e.preventDefault();
+    const fieldsets = document.querySelectorAll('fieldset');
+    const buttons = document.querySelectorAll('button');
+    fieldsets.forEach(element => {
+      element.classList.remove('hidden');
+    });
+    buttons.forEach(element => {
+      if(element.className.includes('fill')){
+
+      }else
+      element.classList.remove('hidden');
+    })
   }
 
   fillForm = (e) => {
     e.preventDefault();
     this.setState({
       personal: {name: "Jason Wong", email: "jason.wongdevwork@gmail.com", phone: "000-000-0000"},
-      university: {school: "UGA", major: "MIS", graduation: "2020"},
+      university: {school: "UNIVERSITY OF GEORGIA", major: "Management Information Systems", graduation: "2020"},
+      skills: ['CSS','Javascript','MySQL','HTML','Problem-Solving'],
       experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"],}],
     })
+    const hiddenButton = document.querySelector('.fillbutton');
+    hiddenButton.classList.add('hidden');
   }
 
   formUpdateChange = (e) => {
@@ -52,7 +80,9 @@ class App extends React.Component {
         })
         }
         
-        
+        if(key == 'skill'){
+          holderObject.skills = this.state.skills.concat(e.target.value);
+        }
         }else {
         for(var key1 in this.state[objectKey]){
           console.log(key1);
@@ -65,6 +95,7 @@ class App extends React.Component {
       this.setState({
         personal: holderObject.personal,
         university: holderObject.university,
+        skills: holderObject.skills,
         experience: holderObject.experience,
       })
   }
@@ -79,6 +110,7 @@ class App extends React.Component {
     A section to add practical experience (company name, position title, main tasks of your jobs, date from and until when you worked for that company)
  */}
       <div className='formContainer'>
+    
         <form onSubmit={this.submitForm} >
       <fieldset className='form'>
         <legend>Personal Details</legend>
@@ -125,12 +157,28 @@ class App extends React.Component {
             <input htmlFor="title" required value={this.state.experience[0].title} onChange={this.formUpdateChange}></input>
           </div>
       </fieldset>
-      
-      <button type='submit'>Submit</button>
-      <button type='button' onClick={this.fillForm}>Fill Form</button>
+      <fieldset className='form'>
+          <legend>Experience:  </legend>
+          <div>
+            <label htmlFor="skills">Skills:</label>
+            <input htmlFor="skills" required value={this.state.skills} onChange={this.formUpdateChange}></input>
+          </div>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input htmlFor="title" required value={this.state.experience[0].title} onChange={this.formUpdateChange}></input>
+          </div>
+      </fieldset>
+
+
+      <div className='formbuttons'>
+      <button type='submit' className='submitbutton'>Submit</button>
+      <button type='button' onClick={this.fillForm} className="fillbutton">Fill Form</button>
+      <button type='button' onClick={this.editForm} className="editbutton">Edit Form</button>
+      </div>
         </form>
       </div>
       <div className='overviewContainer'>
+        <div className='submissionheader'>SUBMISSION DETAILS</div>
         <Overview personal={this.state.personal} university={this.state.university} experience={this.state.experience}></Overview>
       </div>
     </div>

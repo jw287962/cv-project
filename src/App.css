@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
 }
 
 label{
@@ -17,4 +18,24 @@ fieldset > div{
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+button{
+  background-color: white;
+  border: 1px solid grey;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 3px 15px;
+}
+button:active{
+  position: relative;
+  top: 2px;
+}
+.formbuttons{
+  display: flex;
+  justify-content: center;
+}
+
+.hidden{
+  display: none;
 }
