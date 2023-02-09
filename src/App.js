@@ -9,26 +9,25 @@ class App extends React.Component {
     this.state = {
       personal: {name: "", email: "", phone: ""},
       university: {school: "", major: "", graduation: ""},
-      experience: [],
+      experience: [{company: "",title: "", task: []}],
     }
   }
 
    submitForm = (e) =>{
     e.preventDefault();
     this.setState({
-      personal: {name: "", email: "", phone: ""},
-      university: {school: "", major: "", graduation: ""},
-      experience: [{company: "N/A",title: "", task: []}],
+      personal: this.state.personal,
+      university: this.state.university,
+      experience:  this.state.experience,
     })
   }
 
   fillForm = (e) => {
-    console.log('fill')
     e.preventDefault();
     this.setState({
       personal: {name: "Jason Wong", email: "jason.wongdevwork@gmail.com", phone: "000-000-0000"},
       university: {school: "UGA", major: "MIS", graduation: "2020"},
-      experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"]}],
+      experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"],}],
     })
   }
 
@@ -36,53 +35,41 @@ class App extends React.Component {
     e.preventDefault();
    const userCurrentFieldSpot = e.target.parentElement.parentElement.textContent.toLowerCase();
     const userCurrentInput = e.target.parentElement.textContent.toLowerCase();
-
     const holderObject = this.state;
    let objectKey ;
     for(var key in this.state){
       if((userCurrentFieldSpot).includes(key)){
         objectKey = key;
+        if(key == 'experience'){
+          let num =0;
+        this.state[objectKey].forEach(element => {
+          for(var key2 in element){
+            if(userCurrentInput.includes(key2)){
+                holderObject.experience[num][key2] = e.target.value;
+            }
+          }
+          num++;
+        })
+        }
+        
+        
+        }else {
         for(var key1 in this.state[objectKey]){
           console.log(key1);
           if(userCurrentInput.includes(key1)){
             holderObject[objectKey][key1] = e.target.value;
-            this.setState({
-              personal: holderObject.personal,
-              university: holderObject.university,
-              experience: holderObject.experience,
-            })
+            
           }
-        }
+        }}
       }
-    }
+      this.setState({
+        personal: holderObject.personal,
+        university: holderObject.university,
+        experience: holderObject.experience,
+      })
   }
 
-    formUpdatePersonalName = (e) =>{
 
-        e.preventDefault();
-        this.setState({
-          personal: {name: e.target.value, email: this.state.personal.email, phone: this.state.personal.phone},
-          university: this.state.university,
-          experience: this.state.experience,
-        })
-    }
-
-//     formUpdateEmail = (e) =>{
-//       e.preventDefault();
-//       this.setState({
-//         personal: {name: this.state.personal.name,  email:  e.target.value, phone: this.state.personal.phone},
-//         university: this.state.university,
-//         experience: this.state.experience,
-//       })
-//     }
-//   formUpdatePhone = (e) =>{
-//     e.preventDefault();
-//     this.setState({
-//       personal: {name: this.state.personal.name, email: this.state.personal.email, phone:  e.target.value},
-//       university: this.state.university,
-//       experience: this.state.experience,
-//     })
-// }
   render(){
   return (
     <div className="App">
@@ -119,19 +106,23 @@ class App extends React.Component {
 
             <div>
               <label htmlFor="major">Major:</label>
-              <input htmlFor="major" required></input>
+              <input htmlFor="major" required value={this.state.university.major} onChange={this.formUpdateChange}></input>
             </div>
 
             <div>
               <label htmlFor="graduation">Graduation:</label>
-              <input htmlFor="graduation" required></input>
+              <input htmlFor="graduation" required value={this.state.university.graduation} onChange={this.formUpdateChange}></input>
             </div>
       </fieldset>
       <fieldset className='form'>
           <legend>Experience:  </legend>
           <div>
             <label htmlFor="company">Company:</label>
-            <input htmlFor="company" required></input>
+            <input htmlFor="company" required value={this.state.experience[0].company} onChange={this.formUpdateChange}></input>
+          </div>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input htmlFor="title" required value={this.state.experience[0].title} onChange={this.formUpdateChange}></input>
           </div>
       </fieldset>
       
