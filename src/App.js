@@ -65,13 +65,13 @@ class App extends React.Component {
     const userCurrentInput = e.target.parentElement.textContent.toLowerCase();
     const holderObject = this.state;
    let objectKey ;
-    for(var key in this.state){
+    for(let key in this.state){
       if((userCurrentFieldSpot).includes(key)){
         objectKey = key;
         if(key == 'experience'){
           let num =0;
         this.state[objectKey].forEach(element => {
-          for(var key2 in element){
+          for(let key2 in element){
             if(userCurrentInput.includes(key2)){
                 holderObject.experience[num][key2] = e.target.value;
             }
@@ -84,7 +84,7 @@ class App extends React.Component {
           holderObject.skills = this.state.skills.concat(e.target.value);
         }
         }else {
-        for(var key1 in this.state[objectKey]){
+        for(let key1 in this.state[objectKey]){
           console.log(key1);
           if(userCurrentInput.includes(key1)){
             holderObject[objectKey][key1] = e.target.value;

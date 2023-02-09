@@ -10,30 +10,31 @@ class Overview extends React.Component{
 
   render(){
     return (
-      <div className="Overview">
+      <div className="Overview" >
           <div className="headerdetails">
             <div>
-               <div className="personal">{this.props.personal.name}</div>
-              <div className="personal">{this.props.personal.phone}</div>
-              <div className="personal">{this.props.personal.email}</div>
+               <div className="personal" contentEditable="true">{this.props.personal.name}</div>
+              <div className="personal" contentEditable="true">{this.props.personal.phone}</div>
+              <div className="personal" contentEditable="true">{this.props.personal.email}</div>
             </div>
               <div className="university">
-                  <div>{this.props.university.school}</div>
-                  <div>{this.props.university.major}</div>
-                  <div>{this.props.university.graduation}</div>
+                  <div contentEditable="true">{this.props.university.school}</div>
+                  <div contentEditable="true">{this.props.university.major}</div>
+                  <div contentEditable="true">{this.props.university.graduation}</div>
                 </div>            
           </div>  
           <div className='resumebody'>
 
          
-          <div className="experience"> WORK EXPERIENCE:
+          <div className="experience" > 
+          <div contentEditable="true">WORK EXPERIENCE:</div>
 
                 {this.props.experience.map(element => {
                           return (
                               <div>
-                                <div >{element.company} </div>
-                                <div >{element.title} </div>
-                                <div>Task: {
+                                <div contentEditable="true">{element.company} </div>
+                                <div contentEditable="true">{element.title} </div>
+                                <div contentEditable="true">Task: {
                                 element.task.map(element => {
                                   return (
                                   element + "| "
@@ -49,7 +50,7 @@ class Overview extends React.Component{
                 )}
          
           </div>
-          <div className='skills'>Skills:
+          <div className='skills' contentEditable="true">Skills:
 
           </div>
 
