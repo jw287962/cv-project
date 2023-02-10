@@ -10,7 +10,10 @@
   border-bottom: 1px solid grey;
 }
 
-
+.filldata{
+  position: absolute;
+  left: 2px;
+}
 .formContainer{
   border: 1px solid black;
   margin: 15px;
@@ -26,23 +29,7 @@ button{
 
 
 /* for skills */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  margin-top: 5px;
 
-}
-.skill{
-  font-size: 16px;
-  font-weight: bold;
-
-}
-.skills{
-  padding: 0px ;
-  height: clamp(500px,80vh,1000px);
-  border-right: 1px solid black;
-
-}
 /* each editable form input is a detail */
 #detail{
   border: none;

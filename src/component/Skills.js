@@ -1,5 +1,5 @@
 import React from "react";
-
+import './skills.css'
 
 class Skills extends React.Component{
   constructor(props){
@@ -7,7 +7,7 @@ class Skills extends React.Component{
 
 
     this.state = {
-      personal: {name: "Name", email: "Email", phone: "000-000-0000"},
+      data: this.props.data,
       button: true,
     }
       // if(!this.props.button){
@@ -26,24 +26,30 @@ class Skills extends React.Component{
   
         
     this.updateData = (e) => {
-      this.setState({button: !this.state.button})
-      console.log('Click Saving Button')
-  
+      this.setState({
+        button: !this.state.button,
+      })
+    
   
     }
-    this.onChangeUpdate = (e) => {
+    this.onChangeSkillInput = (e) => {
       console.log(e.target.value)
-      this.setState({personal: {name: e.target.value}})
+      this.setState({
+        newItem: e.target.value,
+      })
     }
     this.editSkillsList= (e) =>{
         this.setState({
-          button: !this.state.button
+          button: !this.state.button,
         })
     }
+
     this.saveSkillList= (e) =>{
       console.log('save skills list')
+      console.log(e.target);
       this.setState({
-        button: !this.state.button
+        button: !this.state.button,
+        data: this.state.data.concat((this.state.newItem).toUpperCase())
       })
   }
   }
@@ -58,8 +64,16 @@ class Skills extends React.Component{
             </div>
           </button>
           <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
+          <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} onChange={this.onChangeSkillInput}></input>
+            <ul>
+              {this.state.data.map(element => {
+                return (
+                      <button className="borderless alignleft" onClick={this.deleteSkill}>
+                        <li>{element} </li>
+                      </button>
+              )})}
+              </ul>
             
-            {/* <button type={this.state.type}>{this.state.value}</button> */}
             
         </div>
       )

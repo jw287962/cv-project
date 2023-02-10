@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       personal: {name: "Name", email: "Email@gmail.com", phone: "000-000-0000"},
       university: {school: "College/University", major: "FIELD OF STUDY", graduation: "YEAR (2020)"},
-      skills: [],
+      skills: ['CSS','JAVASCRIPT','HTML','PROBLEM-SOLVING'],
       experience: [{company: "",title: "", task: []}],
       button: true,
     }
@@ -138,7 +138,9 @@ class App extends React.Component {
     A section to add your educational experience (school name, title of study, date of study)
     A section to add practical experience (company name, position title, main tasks of your jobs, date from and until when you worked for that company)
  */}
-    <div className='header'> CV APPLICATION</div>
+    <div className='header'> CV APPLICATION
+      <button className='filldata'>AUTOFILL</button>
+    </div>
       <div className='formContainer'>
           <div className='personal'>
               {/* <Button button={this.state.button} value={this.state.name} ></Button> */}
@@ -158,7 +160,7 @@ class App extends React.Component {
             </div>
             <div className='grid'>
               <div  className='skills left'>
-                <Skills></Skills>
+                <Skills data={this.state.skills}></Skills>
 
               </div>
               <div  className='experience'>
