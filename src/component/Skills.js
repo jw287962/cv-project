@@ -46,16 +46,17 @@ class Skills extends React.Component{
 
     this.saveSkillList= (e) =>{
       console.log('save skills list')
-      console.log(e.target);
-      if(!e.target.value){
+      console.log(this.state.newItem);
+      if(this.state.newItem !== ''){
         this.setState({
           button: !this.state.button,
+          data: this.state.data.concat((this.state.newItem).toUpperCase()),
+          newItem: '',
         })
-        return
-      }
+      
+      }else
       this.setState({
         button: !this.state.button,
-        data: this.state.data.concat((this.state.newItem).toUpperCase())
       })
   }
   }
@@ -71,7 +72,7 @@ class Skills extends React.Component{
           </button>
           <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
           <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} onChange={this.onChangeSkillInput}></input>
-            <ul>
+            <ul className="col">
               {this.state.data.map(element => {
                 return (
                       <button className="borderless alignleft" onClick={this.deleteSkill}>
