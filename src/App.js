@@ -16,7 +16,7 @@ class App extends React.Component {
       button: true,
     }
 
-    // university: {school: "University of Georgia", major: "Management Information Systems", graduation: "2020"},
+    // 
     this.updateHTMLButton = (e) => {
       this.setState({button: !this.state.button})
    
@@ -42,92 +42,18 @@ class App extends React.Component {
     console.log(e.target.value)
     this.setState({personal: {name: e.target.value}})
   }
+
+  this.fillData = (e) => {
+    this.setState({
+      personal: {name: "Jason Wong", email: "jasonwong287962@gmail.com", phone: "000-000-0000"},
+      university: {school: "University of Georgia", major: "Management Information Systems", graduation: "2020"},
+      skills: ['CSS','JAVASCRIPT','HTML','PROBLEM-SOLVING'],
+      experience: [{company: "",title: "", task: []}],
+      button: true,
+    })
+  }
 }
 
-  //  submitForm = (e) =>{
-  //   e.preventDefault();
-  //   this.setState({
-  //     personal: this.state.personal,
-  //     university: this.state.university,
-  //     experience:  this.state.experience,
-  //   })
-  //   const fieldsets = document.querySelectorAll('fieldset');
-  //   const submitButton = document.querySelector('.submitbutton');
-  //   const hiddenButton = document.querySelector('.fillbutton');
-  //   submitButton.classList.add('hidden');
-  //   hiddenButton.classList.add('hidden');
-  //   fieldsets.forEach(element => {
-  //     element.classList.add('hidden');
-
-  //   });
-  // }
-  // editForm = (e) => {
-  //   e.preventDefault();
-  //   const fieldsets = document.querySelectorAll('fieldset');
-  //   const buttons = document.querySelectorAll('button');
-  //   fieldsets.forEach(element => {
-  //     element.classList.remove('hidden');
-  //   });
-  //   buttons.forEach(element => {
-  //     if(element.className.includes('fill')){
-
-  //     }else
-  //     element.classList.remove('hidden');
-  //   })
-  // }
-
-  // fillForm = (e) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     personal: {name: "Jason Wong", email: "jason.wongdevwork@gmail.com", phone: "000-000-0000"},
-  //     university: {school: "UNIVERSITY OF GEORGIA", major: "Management Information Systems", graduation: "2020"},
-  //     skills: ['CSS','Javascript','MySQL','HTML','Problem-Solving'],
-  //     experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"],}],
-  //   })
-  //   const hiddenButton = document.querySelector('.fillbutton');
-  //   hiddenButton.classList.add('hidden');
-  // }
-
-  // formUpdateChange = (e) => {
-  //   e.preventDefault();
-  //  const userCurrentFieldSpot = e.target.parentElement.parentElement.textContent.toLowerCase();
-  //   const userCurrentInput = e.target.parentElement.textContent.toLowerCase();
-  //   const holderObject = this.state;
-  //  let objectKey ;
-  //   for(let key in this.state){
-  //     if((userCurrentFieldSpot).includes(key)){
-  //       objectKey = key;
-  //       if(key == 'experience'){
-  //         let num =0;
-  //       this.state[objectKey].forEach(element => {
-  //         for(let key2 in element){
-  //           if(userCurrentInput.includes(key2)){
-  //               holderObject.experience[num][key2] = e.target.value;
-  //           }
-  //         }
-  //         num++;
-  //       })
-  //       }
-        
-  //       if(key == 'skill'){
-  //         holderObject.skills = this.state.skills.concat(e.target.value);
-  //       }
-  //       }else {
-  //       for(let key1 in this.state[objectKey]){
-  //         console.log(key1);
-  //         if(userCurrentInput.includes(key1)){
-  //           holderObject[objectKey][key1] = e.target.value;
-            
-  //         }
-  //       }}
-  //     }
-  //     this.setState({
-  //       personal: holderObject.personal,
-  //       university: holderObject.university,
-  //       skills: holderObject.skills,
-  //       experience: holderObject.experience,
-  //     })
-  // }
 
 
   render(){
@@ -139,7 +65,7 @@ class App extends React.Component {
     A section to add practical experience (company name, position title, main tasks of your jobs, date from and until when you worked for that company)
  */}
     <div className='header'> CV APPLICATION
-      <button className='filldata'>AUTOFILL</button>
+      <button className='filldata' onClick={this.fillData}>AUTOFILL</button>
     </div>
       <div className='formContainer'>
           <div className='personal'>

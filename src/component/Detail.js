@@ -38,7 +38,14 @@ class Detail extends React.Component{
     }
   }
 
-
+  static getDerivedStateFromProps(props, state){
+      if(props.data !== state.data){
+        return {
+            data: props.data,
+            button: state.button
+        }
+      }
+  }
   render(){
     return (
         <div >
