@@ -1,104 +1,133 @@
 import './App.css';
 import React from 'react';
 import Overview from './component/Overview'
+import Skills from './component/Skills';
+import Detail from './component/Detail';
 
 class App extends React.Component {
   constructor(){
     super();
 
     this.state = {
-      personal: {name: "", email: "", phone: ""},
-      university: {school: "", major: "", graduation: ""},
+      personal: {name: "Name", email: "Email@gmail.com", phone: "000-000-0000"},
+      university: {school: "College/University", major: "FIELD OF STUDY", graduation: "YEAR (2020)"},
       skills: [],
       experience: [{company: "",title: "", task: []}],
+      button: true,
     }
 
-  }
-
-   submitForm = (e) =>{
-    e.preventDefault();
-    this.setState({
-      personal: this.state.personal,
-      university: this.state.university,
-      experience:  this.state.experience,
-    })
-    const fieldsets = document.querySelectorAll('fieldset');
-    const submitButton = document.querySelector('.submitbutton');
-    const hiddenButton = document.querySelector('.fillbutton');
-    submitButton.classList.add('hidden');
-    hiddenButton.classList.add('hidden');
-    fieldsets.forEach(element => {
-      element.classList.add('hidden');
-
-    });
-  }
-  editForm = (e) => {
-    e.preventDefault();
-    const fieldsets = document.querySelectorAll('fieldset');
-    const buttons = document.querySelectorAll('button');
-    fieldsets.forEach(element => {
-      element.classList.remove('hidden');
-    });
-    buttons.forEach(element => {
-      if(element.className.includes('fill')){
-
-      }else
-      element.classList.remove('hidden');
-    })
-  }
-
-  fillForm = (e) => {
-    e.preventDefault();
-    this.setState({
-      personal: {name: "Jason Wong", email: "jason.wongdevwork@gmail.com", phone: "000-000-0000"},
-      university: {school: "UNIVERSITY OF GEORGIA", major: "Management Information Systems", graduation: "2020"},
-      skills: ['CSS','Javascript','MySQL','HTML','Problem-Solving'],
-      experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"],}],
-    })
-    const hiddenButton = document.querySelector('.fillbutton');
-    hiddenButton.classList.add('hidden');
-  }
-
-  formUpdateChange = (e) => {
-    e.preventDefault();
-   const userCurrentFieldSpot = e.target.parentElement.parentElement.textContent.toLowerCase();
-    const userCurrentInput = e.target.parentElement.textContent.toLowerCase();
-    const holderObject = this.state;
-   let objectKey ;
-    for(let key in this.state){
-      if((userCurrentFieldSpot).includes(key)){
-        objectKey = key;
-        if(key == 'experience'){
-          let num =0;
-        this.state[objectKey].forEach(element => {
-          for(let key2 in element){
-            if(userCurrentInput.includes(key2)){
-                holderObject.experience[num][key2] = e.target.value;
-            }
+    // university: {school: "University of Georgia", major: "Management Information Systems", graduation: "2020"},
+    this.updateHTMLButton = (e) => {
+      this.setState({button: !this.state.button})
+   
+      if(this.state.button){
+        console.log('Clicking Button')
+        // // const newInput = document.createElement('input');
+        // // newInput.value = this.state.personal.name;
+        //   let targetNode = e.target;
+        //   targetNode.appendChild(newInput)
           }
-          num++;
-        })
-        }
-        
-        if(key == 'skill'){
-          holderObject.skills = this.state.skills.concat(e.target.value);
-        }
-        }else {
-        for(let key1 in this.state[objectKey]){
-          console.log(key1);
-          if(userCurrentInput.includes(key1)){
-            holderObject[objectKey][key1] = e.target.value;
-            
-          }
-        }}
       }
-      this.setState({
-        personal: holderObject.personal,
-        university: holderObject.university,
-        skills: holderObject.skills,
-        experience: holderObject.experience,
-      })
+
+      
+  this.updateData = (e) => {
+    this.setState({button: !this.state.button})
+    console.log('Click Saving Button')
+
+
+   
+
   }
+  this.onChangeUpdate = (e) => {
+    console.log(e.target.value)
+    this.setState({personal: {name: e.target.value}})
+  }
+}
+
+  //  submitForm = (e) =>{
+  //   e.preventDefault();
+  //   this.setState({
+  //     personal: this.state.personal,
+  //     university: this.state.university,
+  //     experience:  this.state.experience,
+  //   })
+  //   const fieldsets = document.querySelectorAll('fieldset');
+  //   const submitButton = document.querySelector('.submitbutton');
+  //   const hiddenButton = document.querySelector('.fillbutton');
+  //   submitButton.classList.add('hidden');
+  //   hiddenButton.classList.add('hidden');
+  //   fieldsets.forEach(element => {
+  //     element.classList.add('hidden');
+
+  //   });
+  // }
+  // editForm = (e) => {
+  //   e.preventDefault();
+  //   const fieldsets = document.querySelectorAll('fieldset');
+  //   const buttons = document.querySelectorAll('button');
+  //   fieldsets.forEach(element => {
+  //     element.classList.remove('hidden');
+  //   });
+  //   buttons.forEach(element => {
+  //     if(element.className.includes('fill')){
+
+  //     }else
+  //     element.classList.remove('hidden');
+  //   })
+  // }
+
+  // fillForm = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     personal: {name: "Jason Wong", email: "jason.wongdevwork@gmail.com", phone: "000-000-0000"},
+  //     university: {school: "UNIVERSITY OF GEORGIA", major: "Management Information Systems", graduation: "2020"},
+  //     skills: ['CSS','Javascript','MySQL','HTML','Problem-Solving'],
+  //     experience: [{company: "Juicy Seafood",title: "Manager", task: ['Cashier','Host','Server',"ALL"],}],
+  //   })
+  //   const hiddenButton = document.querySelector('.fillbutton');
+  //   hiddenButton.classList.add('hidden');
+  // }
+
+  // formUpdateChange = (e) => {
+  //   e.preventDefault();
+  //  const userCurrentFieldSpot = e.target.parentElement.parentElement.textContent.toLowerCase();
+  //   const userCurrentInput = e.target.parentElement.textContent.toLowerCase();
+  //   const holderObject = this.state;
+  //  let objectKey ;
+  //   for(let key in this.state){
+  //     if((userCurrentFieldSpot).includes(key)){
+  //       objectKey = key;
+  //       if(key == 'experience'){
+  //         let num =0;
+  //       this.state[objectKey].forEach(element => {
+  //         for(let key2 in element){
+  //           if(userCurrentInput.includes(key2)){
+  //               holderObject.experience[num][key2] = e.target.value;
+  //           }
+  //         }
+  //         num++;
+  //       })
+  //       }
+        
+  //       if(key == 'skill'){
+  //         holderObject.skills = this.state.skills.concat(e.target.value);
+  //       }
+  //       }else {
+  //       for(let key1 in this.state[objectKey]){
+  //         console.log(key1);
+  //         if(userCurrentInput.includes(key1)){
+  //           holderObject[objectKey][key1] = e.target.value;
+            
+  //         }
+  //       }}
+  //     }
+  //     this.setState({
+  //       personal: holderObject.personal,
+  //       university: holderObject.university,
+  //       skills: holderObject.skills,
+  //       experience: holderObject.experience,
+  //     })
+  // }
 
 
   render(){
@@ -109,9 +138,47 @@ class App extends React.Component {
     A section to add your educational experience (school name, title of study, date of study)
     A section to add practical experience (company name, position title, main tasks of your jobs, date from and until when you worked for that company)
  */}
+    <div className='header'> CV APPLICATION</div>
       <div className='formContainer'>
-    
-        <form onSubmit={this.submitForm} >
+          <div className='personal'>
+              {/* <Button button={this.state.button} value={this.state.name} ></Button> */}
+                <div className='row apart '>
+                  <div className="col alignleft">
+                    <Detail data={this.state.personal.name} ></Detail>
+                    <Detail data={this.state.personal.email}></Detail>
+                    <Detail data={this.state.personal.phone}></Detail>
+                  </div>
+              
+                  <div className="col alignright">
+                    <Detail data={this.state.university.school} ></Detail>
+                    <Detail data={this.state.university.major}></Detail>
+                    <Detail data={this.state.university.graduation}></Detail>
+                  </div>
+                </div>
+            </div>
+            <div className='grid'>
+              <div  className='skills left'>
+                <Skills></Skills>
+
+              </div>
+              <div  className='experience'>
+                EXPERIENCE
+              </div>
+            </div>
+            
+
+
+
+
+      </div>
+    </div>
+    )}
+}
+       
+export default App;
+{/* 
+
+<form onSubmit={this.submitForm} >
       <fieldset className='form'>
         <legend>Personal Details</legend>
             <div>
@@ -182,8 +249,4 @@ class App extends React.Component {
         <Overview personal={this.state.personal} university={this.state.university} experience={this.state.experience}></Overview>
       </div>
     </div>
-  );
-}
-}
-
-export default App;
+  ); */}

@@ -1,41 +1,84 @@
 
-.form{
+/* header */
+
+.header{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px;
-}
-
-label{
-  min-width: 100px;
-}
-
-/* input{
-} */
-
-fieldset > div{
-  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  height: 50px;
+  border-bottom: 1px solid grey;
 }
 
+
+.formContainer{
+  border: 1px solid black;
+  margin: 15px;
+}
 button{
   background-color: white;
-  border: 1px solid grey;
-  margin: 10px;
-  border-radius: 10px;
-  padding: 3px 15px;
 }
-button:active{
-  position: relative;
-  top: 2px;
-}
+
 .formbuttons{
   display: flex;
   justify-content: center;
 }
 
+
+/* for skills */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-top: 5px;
+
+}
+.skill{
+  font-size: 16px;
+  font-weight: bold;
+
+}
+.skills{
+  padding: 0px ;
+  height: clamp(500px,80vh,1000px);
+  border-right: 1px solid black;
+
+}
+/* each editable form input is a detail */
+#detail{
+  border: none;
+}
+
+.personal{
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  padding: 10px;
+}
+
+/* predefined stuff to reuse*/
+.borderless{
+  border: none;
+}
 .hidden{
   display: none;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.apart{
+  display: flex;
+  justify-content: space-between;
+
+}
+.alignleft{
+  text-align: left;
+}
+
+.alignright{
+  text-align: right;
 }
