@@ -47,7 +47,7 @@ class Skills extends React.Component{
     this.saveSkillList= (e) =>{
       console.log('save skills list')
       console.log(this.state.newItem);
-      if(this.state.newItem !== ''){
+      if(this.state.newItem){
         this.setState({
           button: !this.state.button,
           data: this.state.data.concat((this.state.newItem).toUpperCase()),
