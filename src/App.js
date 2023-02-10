@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       personal: {name: "Name", email: "Email@gmail.com", phone: "000-000-0000"},
       university: {school: "College/University", major: "FIELD OF STUDY", graduation: "YEAR (2020)"},
-      skills: ['CSS','JAVASCRIPT','HTML','PROBLEM-SOLVING'],
+      skills: [],
       experience: [{company: "",title: "", task: []}],
       button: true,
     }

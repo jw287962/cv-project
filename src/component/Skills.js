@@ -45,8 +45,6 @@ class Skills extends React.Component{
     }
 
     this.saveSkillList= (e) =>{
-      console.log('save skills list')
-      console.log(this.state.newItem);
       if(this.state.newItem){
         this.setState({
           button: !this.state.button,
@@ -60,7 +58,17 @@ class Skills extends React.Component{
       })
   }
   }
+  
+  static getDerivedStateFromProps(props,state){
+    if(props.data !== state.data){
+    return {
+      data: props.data,
+      button: state.button,
+    }
+    }
+    return null;
 
+  }
 
   render(){
     return (
