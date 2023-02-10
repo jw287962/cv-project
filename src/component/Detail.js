@@ -45,6 +45,8 @@ class Detail extends React.Component{
             button: state.button
         }
       }
+      
+      return null;
   }
   render(){
     return (
