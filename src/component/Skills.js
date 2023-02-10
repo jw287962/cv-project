@@ -9,6 +9,7 @@ class Skills extends React.Component{
     this.state = {
       data: this.props.data,
       button: true,
+      allowUpdate: false,
     }
       // if(!this.props.button){
       //   this.setState({value: "edit"})
@@ -33,7 +34,6 @@ class Skills extends React.Component{
   
     }
     this.onChangeSkillInput = (e) => {
-      console.log(e.target.value)
       this.setState({
         newItem: e.target.value,
       })
@@ -41,33 +41,44 @@ class Skills extends React.Component{
     this.editSkillsList= (e) =>{
         this.setState({
           button: !this.state.button,
+          allowUpdate: true,
         })
     }
 
     this.saveSkillList= (e) =>{
-      if(this.state.newItem){
+      console.log(this.state.newItem);
+        if(this.state.newItem){
+          this.setState({
+            button: !this.state.button,
+            data: this.state.data.concat((this.state.newItem).toUpperCase()),
+            newItem: '',
+          })
+        
+        }else
         this.setState({
           button: !this.state.button,
-          data: this.state.data.concat((this.state.newItem).toUpperCase()),
-          newItem: '',
         })
-      
-      }else
+    }
+
+
+    this.deleteSkill = (e) =>{
+        let listPostion = e.target.parentElement.getAttribute('a-key');
+        this.state.data.splice(listPostion,1);
       this.setState({
-        button: !this.state.button,
+        data: this.state.data,
+        newItem: '',
       })
-  }
+    }
   }
   
   static getDerivedStateFromProps(props,state){
-    if(props.data !== state.data){
+    if(!state.allowUpdate && props.data !== state.data){
     return {
       data: props.data,
       button: state.button,
     }
     }
     return null;
-
   }
 
   render(){
@@ -81,10 +92,12 @@ class Skills extends React.Component{
           <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
           <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} onChange={this.onChangeSkillInput}></input>
             <ul className="col">
-              {this.state.data.map(element => {
+              {this.state.data.map((element,i=0) => {
                 return (
-                      <button className="borderless alignleft" onClick={this.deleteSkill}>
-                        <li>{element} </li>
+                      <button className="borderless alignleft" onClick={this.deleteSkill} 
+                              key={'skills'+i} a-key={i}
+                              >
+                        <li >{element} </li>
                       </button>
               )})}
               </ul>
