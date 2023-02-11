@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import Overview from './component/Overview'
+import Experience from './component/Experience'
 import Skills from './component/Skills';
 import Detail from './component/Detail';
 
@@ -90,7 +90,7 @@ class App extends React.Component {
 
               </div>
               <div  className='experience'>
-                EXPERIENCE
+                <Experience></Experience>
               </div>
             </div>
             

@@ -85,9 +85,7 @@ class Skills extends React.Component{
     return (
         <div>
           <button className="borderless skill" onClick={this.editSkillsList} disabled={!this.state.button}>SKILLS
-            <div>
-
-            </div>
+            
           </button>
           <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
           <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} onChange={this.onChangeSkillInput}></input>
