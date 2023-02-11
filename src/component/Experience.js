@@ -7,13 +7,14 @@ class Experience extends React.Component{
       
         this.state ={
           currentForm: {title: "", company: "", description: ""},
-          data: [],
+          data: this.props.data,
           button: true,
           noUpdate: props.noUpdate,
 
 
         }
           console.log(this.state.data);
+          
       this.editExperience = (e) => {
         this.setState({
           button: !this.state.button,
@@ -24,7 +25,16 @@ class Experience extends React.Component{
 
     this.saveExperience = (e) => {
       e.preventDefault();
-      console.log(this.state.currentForm);
+      console.log(this.state.data.title);
+      if(this.state.data.title === undefined && this.state.data.length ===1){
+        console.log(true);
+        this.setState({
+          data: [this.state.currentForm],
+          currentForm: {title: "", company: "", description: ""},
+          button: !this.state.button,
+        })
+      }
+      
         this.setState({
           data: this.state.data.concat(this.state.currentForm),
           currentForm: {title: "", company: "", description: ""},
@@ -46,14 +56,18 @@ class Experience extends React.Component{
       }
 
       console.log(arrayNum);
+      let currentArray = this.state.data[arrayNum]
+      console.log(currentArray);
+      // this.setState({
+      //   currentForm: {title: , company: "", description: ""},
 
+      // })
       e.stopPropagation()
       e.preventDefault();
 
     }
 
     this.formOnChange = (e) => {
-      console.log(e.target.id);
       if(e.target.id === 'company'){
         this.setState({
           currentForm: { title: this.state.currentForm.title,  description: this.state.currentForm.description, company: e.target.value}
@@ -75,7 +89,7 @@ class Experience extends React.Component{
   static getDerivedStateFromProps(props,state){
     if(state.noUpdate && props.data !== state.data){
       return {
-        data: props.data,
+        data: props.data.slice(0,1),
         button: state.button,
         noUpdate: false,
       }
@@ -83,6 +97,8 @@ class Experience extends React.Component{
       return null;
 
   }
+
+  // NO DATES YET 
   render(){
     return (
         <div>
@@ -93,7 +109,7 @@ class Experience extends React.Component{
 
                   <div className={(this.state.button) ? "hidden" : "nothidden"}>
                     <form className="expform" onSubmit={this.submitFormExperiences}>
-                        <label htmlFor="company">Company Name</label>
+                        <label htmlFor="company" >Company Name</label>
                         <input type='text' id="company" name="company" value={this.state.currentForm.company} onChange={this.formOnChange}></input>
                         <label  htmlFor="title">Position Title </label>
                         <input type='text' name="title" id="title" value={this.state.currentForm.title}  onChange={this.formOnChange}></input>
