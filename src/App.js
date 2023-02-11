@@ -49,7 +49,7 @@ class App extends React.Component {
       personal: {name: "Jason Wong", email: "jasonwong287962@gmail.com", phone: "000-000-0000"},
       university: {school: "University of Georgia", major: "Management Information Systems", graduation: "2020"},
       skills: ['CSS','JAVASCRIPT','HTML','PROBLEM-SOLVING'],
-      experience: [{company: "Juicy S",title: "Manager", task: ['Customer Service'], description: "Improved Sales by 100% YOY by implementing modern technology to increase efficiency and allow for more automation in day-to-day tasks(IE: cloud-based services"}],
+      experience: [{company: "Juicy S",title: "Manager", task: ['Customer Service'], description: "Improved Sales and Customer Service by implementing modern technology to increase efficiency/accurancy and utilizing automation in day-to-day tasks(IE: cloud-based services)"}],
       button: true,
       noUpdate: false,
     })
@@ -106,77 +106,3 @@ class App extends React.Component {
 }
        
 export default App;
-{/* 
-
-<form onSubmit={this.submitForm} >
-      <fieldset className='form'>
-        <legend>Personal Details</legend>
-            <div>
-              <label htmlFor="name">Name:</label>
-              <input htmlFor="name" required value={this.state.personal.name} onChange={this.formUpdateChange}></input>
-            </div>
-
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input htmlFor="email" required value={this.state.personal.email} onChange={this.formUpdateChange}></input>
-            </div>
-
-            <div>
-              <label htmlFor="phone">Phone:</label>
-              <input htmlFor="phone" required value={this.state.personal.phone} onChange={this.formUpdateChange}></input>
-            </div>
-      </fieldset>
-      <fieldset className='form'>
-        <legend> University Information</legend>
-            <div>
-              <label htmlFor="school">School:</label>
-              <input htmlFor="school" required value={this.state.university.school} onChange={this.formUpdateChange}></input>
-            </div>
-
-            <div>
-              <label htmlFor="major">Major:</label>
-              <input htmlFor="major" required value={this.state.university.major} onChange={this.formUpdateChange}></input>
-            </div>
-
-            <div>
-              <label htmlFor="graduation">Graduation:</label>
-              <input htmlFor="graduation" required value={this.state.university.graduation} onChange={this.formUpdateChange}></input>
-            </div>
-      </fieldset>
-      <fieldset className='form'>
-          <legend>Experience:  </legend>
-          <div>
-            <label htmlFor="company">Company:</label>
-            <input htmlFor="company" required value={this.state.experience[0].company} onChange={this.formUpdateChange}></input>
-          </div>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input htmlFor="title" required value={this.state.experience[0].title} onChange={this.formUpdateChange}></input>
-          </div>
-      </fieldset>
-      <fieldset className='form'>
-          <legend>Experience:  </legend>
-          <div>
-            <label htmlFor="skills">Skills:</label>
-            <input htmlFor="skills" required value={this.state.skills} onChange={this.formUpdateChange}></input>
-          </div>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input htmlFor="title" required value={this.state.experience[0].title} onChange={this.formUpdateChange}></input>
-          </div>
-      </fieldset>
-
-
-      <div className='formbuttons'>
-      <button type='submit' className='submitbutton'>Submit</button>
-      <button type='button' onClick={this.fillForm} className="fillbutton">Fill Form</button>
-      <button type='button' onClick={this.editForm} className="editbutton">Edit Form</button>
-      </div>
-        </form>
-      </div>
-      <div className='overviewContainer'>
-        <div className='submissionheader'>SUBMISSION DETAILS</div>
-        <Overview personal={this.state.personal} university={this.state.university} experience={this.state.experience}></Overview>
-      </div>
-    </div>
-  ); */}

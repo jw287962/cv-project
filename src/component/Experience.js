@@ -68,10 +68,12 @@ class Experience extends React.Component{
                   </div>
                   
                   {this.state.data.map((ele,i) => {
+                    if(ele.title === "") return;
                         return(
                           <div className={'workexperiences'} id={i}key={i}>
-                              <div>{ele.company}</div>
-                              <div>{ele.title}</div>
+                              <div className="title">Title: {ele.title}</div>
+                              <div className="company"> {ele.company}</div>
+
                               <div>{ele.description}</div>
                           </div>
                         ) 
