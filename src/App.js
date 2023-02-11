@@ -12,8 +12,9 @@ class App extends React.Component {
       personal: {name: "Name", email: "Email@gmail.com", phone: "000-000-0000"},
       university: {school: "College/University", major: "FIELD OF STUDY", graduation: "YEAR (2020)"},
       skills: [],
-      experience: [{company: "",title: "", task: []}],
+      experience: [{company: "",title: "", task: [], description: ""}],
       button: true,
+      noUpdate: true,
     }
 
     // 
@@ -48,8 +49,9 @@ class App extends React.Component {
       personal: {name: "Jason Wong", email: "jasonwong287962@gmail.com", phone: "000-000-0000"},
       university: {school: "University of Georgia", major: "Management Information Systems", graduation: "2020"},
       skills: ['CSS','JAVASCRIPT','HTML','PROBLEM-SOLVING'],
-      experience: [{company: "",title: "", task: []}],
+      experience: [{company: "Juicy S",title: "Manager", task: ['Customer Service'], description: "Improved Sales by 100% YOY by implementing modern technology to increase efficiency and allow for more automation in day-to-day tasks(IE: cloud-based services"}],
       button: true,
+      noUpdate: false,
     })
   }
 }
@@ -90,7 +92,7 @@ class App extends React.Component {
 
               </div>
               <div  className='experience'>
-                <Experience></Experience>
+                <Experience data={this.state.experience} noUpdate= {this.state.noUpdate}></Experience>
               </div>
             </div>
             

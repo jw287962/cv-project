@@ -1,0 +1,12 @@
+.expform{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-left: 20px;
+}
+
+.workexperiences{
+  font-size: 14px;
+  margin-inline-end:  10px;
+  font-weight:500;
+}
