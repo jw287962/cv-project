@@ -25,21 +25,23 @@ class Experience extends React.Component{
 
     this.saveExperience = (e) => {
       e.preventDefault();
-      console.log(this.state.data.title);
+      console.log(this.state.currentForm);
       if(this.state.data.title === undefined && this.state.data.length ===1){
-        console.log(true);
         this.setState({
           data: [this.state.currentForm],
-          currentForm: {title: "", company: "", description: ""},
           button: !this.state.button,
+          currentForm: {title: "", company: "", description: ""},
+          noUpdate: false,
         })
       }
-      
+      else{
         this.setState({
           data: this.state.data.concat(this.state.currentForm),
           currentForm: {title: "", company: "", description: ""},
           button: !this.state.button,
         })
+      }
+        
     }
 
     this.submitFormExperiences = (e) => {
