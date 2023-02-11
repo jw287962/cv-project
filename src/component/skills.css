@@ -1,7 +1,7 @@
 /* for skills */
 .grid{
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 155px 4fr;
   margin-top: 5px;
 
 }
