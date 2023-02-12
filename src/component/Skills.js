@@ -1,98 +1,102 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './skills.css'
 
-class Skills extends React.Component{
-  constructor(props){
-    super(props);
+
+const Skills = (props) => {
+// class Skills extends React.Component{
+  // constructor(props){
+  //   super(props);
+
+ const [data, setData] = useState(props.data);
+const [button, setButton] = useState(true);
+const [allowUpdate, setAllowUpdate] = useState(false);
+const [newItem, setNewItem] = useState('');
+
+useEffect(() => {
+  console.log(props);
+  // const getDerivedStateFromProps = () => {
+    if(!allowUpdate && props.data !== data){
+      setData(props.data);
+      setButton(button);
+}
 
 
-    this.state = {
-      data: this.props.data,
-      button: true,
-      allowUpdate: false,
-    }
-      // if(!this.props.button){
-      //   this.setState({value: "edit"})
-      // }
-     
+return () => {
+};
+    // }
+});
   
-      this.updateHTMLButton = (e) => {
-        this.setState({button: !this.state.button})
+      const updateHTMLButton = (e) => {
+        setButton(!button());
      
-        if(this.state.button){
+        if(button){
           console.log('Clicking Button')
      
             }
         }
   
         
-    this.updateData = (e) => {
-      this.setState({
-        button: !this.state.button,
-      })
+        const updateData = (e) => (setButton(!button()))
+   
     
-  
+    const onChangeSkillInput = (e) => ( setNewItem(e.target.value))
+     
+      // this.setState({
+      //   newItem: e.target.value,
+      // })
+    const editSkillsList= (e) =>{
+        setButton(!button);
+        setAllowUpdate(true);
     }
-    this.onChangeSkillInput = (e) => {
-      this.setState({
-        newItem: e.target.value,
-      })
-    }
-    this.editSkillsList= (e) =>{
-        this.setState({
-          button: !this.state.button,
-          allowUpdate: true,
-        })
-    }
+        // this.setState({
+        //   button: !this.state.button,
+        //   allowUpdate: true,
+        // })
+    
 
-    this.saveSkillList= (e) =>{
-      console.log(this.state.newItem);
-        if(this.state.newItem){
-          this.setState({
-            button: !this.state.button,
-            data: this.state.data.concat((this.state.newItem).toUpperCase()),
-            newItem: '',
-          })
+    const saveSkillList= (e) =>{
+      console.log(newItem);
+        if(newItem){
+          // this.setState({
+          //   button: !this.state.button,
+          //   data: this.state.data.concat((this.state.newItem).toUpperCase()),
+          //   newItem: '',
+          // })
+          setButton(!button)
+          setData(data.concat(newItem.toUpperCase()));
+          setNewItem('');
         
         }else
-        this.setState({
-          button: !this.state.button,
-        })
+          setButton(!button);
     }
 
 
-    this.deleteSkill = (e) =>{
+    const deleteSkill = (e) =>{
         let listPostion = e.target.parentElement.getAttribute('a-key');
-        this.state.data.splice(listPostion,1);
-      this.setState({
-        data: this.state.data,
-        newItem: '',
-      })
-    }
-  }
-  
-  static getDerivedStateFromProps(props,state){
-    if(!state.allowUpdate && props.data !== state.data){
-    return {
-      data: props.data,
-      button: state.button,
-    }
-    }
-    return null;
-  }
+      console.log('delete', listPostion)
 
-  render(){
+        data.splice(listPostion,1);
+      // this.setState({
+      //   data: this.state.data,
+      //   newItem: '',
+      // })
+      setData(data);
+      setNewItem('');
+    }
+ 
+  
+
     return (
         <div>
-          <button className="borderless skill" onClick={this.editSkillsList} disabled={!this.state.button}>SKILLS
+          <button className="borderless skill" onClick={editSkillsList} disabled={!button}>SKILLS
             
           </button>
-          <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
-          <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} value={this.state.newItem}  onChange={this.onChangeSkillInput}></input>
+          <button className={(button) ? 'hidden': 'nothidden'} onClick={saveSkillList}> Save</button>
+          <input className={((button) ? 'hidden': 'nothidden') + " skillsInput"} value={newItem}  onChange={onChangeSkillInput}></input>
             <ul className="col">
-              {this.state.data.map((element,i=0) => {
+              {data.map((element,i=0) => {
                 return (
-                      <button className="borderless alignleft" onClick={this.deleteSkill} 
+                      <button className="borderless alignleft" onClick={deleteSkill} 
                               key={'skills'+i} a-key={i}
                               >
                         <li >{element} </li>
@@ -104,7 +108,6 @@ class Skills extends React.Component{
         </div>
       )
 
-  }
 
 }
 
