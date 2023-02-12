@@ -88,7 +88,7 @@ class Skills extends React.Component{
             
           </button>
           <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.saveSkillList}> Save</button>
-          <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} onChange={this.onChangeSkillInput}></input>
+          <input className={((this.state.button) ? 'hidden': 'nothidden') + " skillsInput"} value={this.state.newItem}  onChange={this.onChangeSkillInput}></input>
             <ul className="col">
               {this.state.data.map((element,i=0) => {
                 return (
