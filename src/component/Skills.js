@@ -26,14 +26,14 @@ return () => {
     // }
 });
   
-      const updateHTMLButton = (e) => {
-        setButton(!button());
+      // const updateHTMLButton = (e) => {
+      //   setButton(!button());
      
-        if(button){
-          console.log('Clicking Button')
+      //   if(button){
+      //     console.log('Clicking Button')
      
-            }
-        }
+      //       }
+      //   }
   
         
         const updateData = (e) => (setButton(!button()))
@@ -74,9 +74,9 @@ return () => {
     const deleteSkill = (e) =>{
         let listPostion = e.target.parentElement.getAttribute('a-key');
       console.log('delete', listPostion)
-        data.splice(listPostion,1);
+  data.splice(listPostion,1);
  
-      setData(data);
+      setData(data.concat());
       setNewItem('');
     }
  
