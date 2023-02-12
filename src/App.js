@@ -103,6 +103,14 @@ class App extends React.Component {
       </div>
     </div>
     )}
+
+
+  componentDidCatch(error, info) {
+    console.log('Componenet did catch')
+
+    this.setState({error, info})
+  }
+
 }
        
 export default App;

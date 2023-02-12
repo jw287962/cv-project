@@ -1,22 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 
 
-class Detail extends React.Component{
-  constructor(props){
-    super(props);
+const Detail = (props) =>{
+  // constructor(props){
+  //   super(props);
 
-    
-      this.state = {
-        // personal: {data: "Name", email: "Email", phone: "000-000-0000"},
-        data: this.props.data,
-        button: true,
-      }
+  const [data, setData] = useState(props.data);
+    const [button, setButton] = useState(true);
+      // this.state = {
+      //   // personal: {data: "Name", email: "Email", phone: "000-000-0000"},
+      //   data: this.props.data,
+      //   button: true,
+      // }
 
   
-      this.updateHTMLButton = (e) => {
-        this.setState({button: !this.state.button})
+     const updateHTMLButton = (e) => {
+        // this.setState({button: !this.state.button})
+        setButton(!button);
      
-        if(this.state.button){
+        if(button){
           console.log('Clicking Button')
           // // const newInput = document.createElement('input');
           // // newInput.value = this.state.personal.name;
@@ -26,44 +28,40 @@ class Detail extends React.Component{
         }
   
         
-    this.updateData = (e) => {
-      this.setState({button: !this.state.button})
+    const updateData = () => {
+      // this.setState({button: !this.state.button})
+      setButton(!button);
       console.log('Click Saving Button')
   
   
     }
-    this.onChangeUpdate = (e) => {
+    const onChangeUpdate = (e) => {
       console.log(e.target.value)
-      this.setState({data: e.target.value})
+      // this.setState({data: e.target.value})
+      setData(e.target.value);
     }
-  }
 
-  static getDerivedStateFromProps(props, state){
-      if(props.data !== state.data){
-        return {
-            data: props.data,
-            button: state.button
-        }
-      }
-      
-      return null;
-  }
-  render(){
+  // static getDerivedStateFromProps(props, state){
+  //     if(props.data !== state.data){
+  //       return {
+  //           data: props.data,
+  //           button: state.button
+  //       }
+  //     }
+      // return null;
+  // }
     return (
         <div >
-          <button className='singledata' id='detail' onClick={this.updateHTMLButton} disabled={!this.state.button}>
-                        <div className={(!this.state.button) ? 'hidden': 'nothidden'}>{this.state.data}</div> 
-                        <input className={(this.state.button) ? 'hidden': 'nothidden'} value={this.state.data} onChange={this.onChangeUpdate} ></input>
+          <button className='singledata' id='detail' onClick={updateHTMLButton} disabled={!button}>
+                        <div className={(!button) ? 'hidden': 'nothidden'}>{data}</div> 
+                        <input className={(button) ? 'hidden': 'nothidden'} value={data} onChange={onChangeUpdate} ></input>
                    </button>
-                  <button className={(this.state.button) ? 'hidden': 'nothidden'} onClick={this.updateData}>Save</button>
+                  <button className={(button) ? 'hidden': 'nothidden'} onClick={updateData}>Save</button>
 
             
             
         </div>
       )
 
-  }
-
-}
-
+    };
 export default Detail;

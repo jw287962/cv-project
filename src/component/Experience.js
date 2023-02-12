@@ -1,5 +1,7 @@
 import React from "react";
 import './experience.css'
+
+// const ErrorComponent = () => <div>{this.props.ignore}</div>
 class Experience extends React.Component{
 
     constructor(props){
@@ -10,6 +12,7 @@ class Experience extends React.Component{
           data: this.props.data,
           button: true,
           noUpdate: props.noUpdate,
+          showErrorComponent: false,
 
 
         }
@@ -88,6 +91,12 @@ class Experience extends React.Component{
         })
       }
     }
+
+      this.toggleError = (e) => {
+        this.setState({showErrorComponent: !this.state.showErrorComponent})
+      }
+
+
     }
 
   static getDerivedStateFromProps(props,state){
@@ -104,9 +113,14 @@ class Experience extends React.Component{
 
   // NO DATES YET 
   render(){
+    // if(this.state.error){
+    //                   return <div>We encountered an error! {this.state.error.message}</div>
+    // }
     return (
+   
         <div>
                <div>
+                
                  <button className="borderless experience" onClick={this.editExperience} disabled={!this.state.button}>EXPERIENCE</button>
                  
                   <button className={(this.state.button) ? "hidden" : "nothidden"} onClick={this.saveExperience}>Save</button>
@@ -124,7 +138,6 @@ class Experience extends React.Component{
                         <label htmlFor="end">End Date</label>
                         <input type='date' id="end" name="end"></input>
                     </form>
-
                   </div>
                   
                   {this.state.data.map((ele,i) => {
@@ -147,6 +160,13 @@ class Experience extends React.Component{
         </div>
     )
   }
+
+  componentDidCatch(error, info) {
+    console.log('Componenet did catch')
+
+    this.setState({error, info})
+  }
+
 }
 
 export default Experience;
