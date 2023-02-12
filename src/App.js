@@ -74,15 +74,15 @@ class App extends React.Component {
               {/* <Button button={this.state.button} value={this.state.name} ></Button> */}
                 <div className='row apart '>
                   <div className="col alignleft">
-                    <Detail data={this.state.personal.name} ></Detail>
-                    <Detail data={this.state.personal.email}></Detail>
-                    <Detail data={this.state.personal.phone}></Detail>
+                    <Detail data={this.state.personal.name} noUpdate={this.state.noUpdate}></Detail>
+                    <Detail data={this.state.personal.email} noUpdate={this.state.noUpdate}></Detail>
+                    <Detail data={this.state.personal.phone} noUpdate={this.state.noUpdate}></Detail>
                   </div>
               
                   <div className="col alignright">
-                    <Detail data={this.state.university.school} ></Detail>
-                    <Detail data={this.state.university.major}></Detail>
-                    <Detail data={this.state.university.graduation}></Detail>
+                    <Detail data={this.state.university.school} noUpdate={this.state.noUpdate}></Detail>
+                    <Detail data={this.state.university.major} noUpdate={this.state.noUpdate}></Detail>
+                    <Detail data={this.state.university.graduation} noUpdate={this.state.noUpdate}></Detail>
                   </div>
                 </div>
             </div>

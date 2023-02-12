@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 
 const Detail = (props) =>{
@@ -7,6 +7,8 @@ const Detail = (props) =>{
 
   const [data, setData] = useState(props.data);
     const [button, setButton] = useState(true);
+const [noUpdate, setNoUpdate] = useState(props.noUpdate);
+
       // this.state = {
       //   // personal: {data: "Name", email: "Email", phone: "000-000-0000"},
       //   data: this.props.data,
@@ -17,7 +19,7 @@ const Detail = (props) =>{
      const updateHTMLButton = (e) => {
         // this.setState({button: !this.state.button})
         setButton(!button);
-     
+        setNoUpdate(false);
         if(button){
           console.log('Clicking Button')
           // // const newInput = document.createElement('input');
@@ -41,15 +43,17 @@ const Detail = (props) =>{
       setData(e.target.value);
     }
 
-  // static getDerivedStateFromProps(props, state){
-  //     if(props.data !== state.data){
-  //       return {
-  //           data: props.data,
-  //           button: state.button
-  //       }
-  //     }
-      // return null;
-  // }
+  useEffect(() => {
+      if(noUpdate && props.data !== data){
+          console.log('change back to prop');
+        setData(props.data);
+        setButton(button);
+        setNoUpdate(false);
+        
+      }
+
+  }) 
+
     return (
         <div >
           <button className='singledata' id='detail' onClick={updateHTMLButton} disabled={!button}>

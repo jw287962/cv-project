@@ -74,12 +74,8 @@ return () => {
     const deleteSkill = (e) =>{
         let listPostion = e.target.parentElement.getAttribute('a-key');
       console.log('delete', listPostion)
-
         data.splice(listPostion,1);
-      // this.setState({
-      //   data: this.state.data,
-      //   newItem: '',
-      // })
+ 
       setData(data);
       setNewItem('');
     }
