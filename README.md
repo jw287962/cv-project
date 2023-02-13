@@ -1,5 +1,7 @@
 # Website 
-https://github.com/jw287962/cv-project
+
+https://jw287962.github.io/cv-project/
+
 
 # Getting Started with Create React App
 
